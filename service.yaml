@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: servicio-modelo-ml-streamlit-johnortiz
+spec:
+  template:
+    spec:
+      containers:
+        - image: us-central1-docker.pkg.dev/project-mlops10-api/repo-servicio-api-ml/image-v3-modelo-ml-streamlit:latest
+          env:
+          ports:
+            - containerPort: 4005

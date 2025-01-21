@@ -12,7 +12,7 @@ from conf.local import config
 from sklearn.pipeline import Pipeline
 from sklearn.cluster import KMeans
 
-import src.preprocessors as pp
+import input.preprocessors as pp
 
 
 X_train = pd.read_csv("data/02_model_input/train.csv")

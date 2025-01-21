@@ -7,7 +7,7 @@ import streamlit as st
 
 import seaborn as sns
 import matplotlib.pyplot as plt
-import src.preprocessors as pp
+import input.preprocessors as pp
 
 
 from PIL import Image 
@@ -47,7 +47,7 @@ def plot_variables(df, vars):
 #Diseno de la Interface
 st.title("Clusterizacion Facebook John Ortiz - DATAPATH")
 
-image = Image.open('data/datapath-logo.png') #COMPLETAR CON UNA IMAGEN
+image = Image.open('src/data/datapath-logo.png') #COMPLETAR CON UNA IMAGEN
 st.image(image, use_container_width=True) #use_column_width esta "deprecated"
 
 st.sidebar.write("Suba el archivo CSV de interacciones de Facebook para realizar la segmentación")
@@ -67,8 +67,8 @@ if uploaded_file is not None:
 
 
 #Cargar el Modelo ML o Cargar el Pipeline
-pipeline_predict = joblib.load('data/03_models/facebook_predict_pipeline.joblib')
-pipeline_preprocess = joblib.load('data/03_models/facebook_preprocess_pipeline.joblib')
+pipeline_predict = joblib.load('src/data/03_models/facebook_predict_pipeline.joblib')
+pipeline_preprocess = joblib.load('src/data/03_models/facebook_preprocess_pipeline.joblib')
 
 if st.sidebar.button("click aqui para enviar el CSV al Pipeline"):
     if uploaded_file is None:
@@ -94,15 +94,8 @@ if st.sidebar.button("click aqui para enviar el CSV al Pipeline"):
 
             st.pyplot(num_fig)
 
-            df_resultado = df_de_los_datos_subidos.copy()
-            df_resultado['Clusters'] = pred_clusters
-
-            #Mostrar el Dataframe contatenado
-            st.write('Datos originales con predicciones:')
-            st.dataframe(df_resultado)
-
             #Creamos el archivo CSV para descargar
-            csv = df_resultado.to_csv(index=False).encode('utf-8')
+            csv = df_new.to_csv(index=False).encode('utf-8')
 
             #Botón para descargar el CSV
             st.download_button(
