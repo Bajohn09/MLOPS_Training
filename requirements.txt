@@ -1,0 +1,12 @@
+ipython>=8.10
+jupyterlab>=3.0
+kedro-datasets[pandas-csvdataset, pandas-exceldataset, pandas-parquetdataset]>=3.0
+kedro-viz>=6.7.0
+kedro[jupyter]~=0.19.10
+notebook
+scikit-learn~=1.4.0
+pandas~=2.0.0
+ipykernel~=6.25.0
+pycaret==3.3.2
+seaborn
+streamlit
